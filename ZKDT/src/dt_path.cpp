@@ -19,6 +19,7 @@ using namespace libsnark;
 
 // the size of a r1cs scales almost linearly with the depth parameters
 // in this synthetic example, we require that n_vars >= depth
+// 针对合成树和随机输入进行证明
 template<typename ppT>
 void test_synthetic_dt_path(int depth = 100) {
     typedef libff::Fr<ppT> FieldT;
@@ -52,6 +53,8 @@ void test_synthetic_dt_path(int depth = 100) {
 
 unsigned target_batch_size = 500;
 
+// 把一行用逗号分隔的数字字符串，解析成放大multi倍的无符号整数数组（vector）
+// 函数参数：输入，输出，解析的数值个数，每个数值要乘以的倍数
 void parse_line(const std::string& line, std::vector<unsigned>& sample, unsigned n_values, unsigned multi) {
     sample.clear();
     float v;
@@ -66,6 +69,8 @@ void parse_line(const std::string& line, std::vector<unsigned>& sample, unsigned
     }
 }
 
+// 读一个纯数字 CSV 文件 → 按行解析 → 转成二维整数数组
+// 函数参数（输入：文件路径，输出：二维数组，放大系数），最多读取500行
 void read_dataset(const std::string& filename, std::vector<std::vector<unsigned>>& data, unsigned multi) {
     std::ifstream f (filename);
     std::string line;
