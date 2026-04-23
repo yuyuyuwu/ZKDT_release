@@ -83,7 +83,7 @@ void read_dataset(const std::string& filename, std::vector<std::vector<unsigned>
             if (line[i] == ',') {
                 n_values++;
             }
-        }
+        }// ******这个输入数据特征需要根据数据的情况而定？因为有的数据包含id和label
 
         unsigned n_lines = 0;
         data.push_back(std::vector<unsigned>());
