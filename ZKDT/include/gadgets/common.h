@@ -12,6 +12,7 @@ using namespace libsnark;
 #define add_r1cs(x, y, z) this->pb.add_r1cs_constraint(r1cs_constraint<FieldT>(x, y, z))
 #define eval(x) this->pb.val(x)
 
+// 一次性创建电路pb中的多个变量，变量名为name_0,name_1,...
 template<typename FieldT>
 void _init_pb_array(protoboard <FieldT> &pb, pb_variable <FieldT> *&array, int length, std::string &&name) {
     array = new pb_variable<FieldT>[length];
